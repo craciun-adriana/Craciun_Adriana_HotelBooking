@@ -57,10 +57,11 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ReservationId,Amount,PaymentMethod,PaymentDate")] Payment payment)
+        public async Task<IActionResult> Create([Bind("ReservationId,Amount,PaymentMethod")] Payment payment)
         {
             if (ModelState.IsValid)
             {
+                payment.PaymentDate = DateTime.Now;
                 _context.Add(payment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -91,7 +92,7 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ReservationId,Amount,PaymentMethod,PaymentDate")] Payment payment)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ReservationId,Amount,PaymentMethod")] Payment payment)
         {
             if (id != payment.Id)
             {
