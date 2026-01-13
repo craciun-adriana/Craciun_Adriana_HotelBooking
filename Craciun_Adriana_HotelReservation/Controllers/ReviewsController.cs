@@ -1,0 +1,169 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Craciun_Adriana_HotelReservation.Data;
+using Craciun_Adriana_HotelReservation.Models;
+
+namespace Craciun_Adriana_HotelReservation.Controllers
+{
+    public class ReviewsController : Controller
+    {
+        private readonly Craciun_Adriana_HotelReservationContext _context;
+
+        public ReviewsController(Craciun_Adriana_HotelReservationContext context)
+        {
+            _context = context;
+        }
+
+        // GET: Reviews
+        public async Task<IActionResult> Index()
+        {
+            var craciun_Adriana_HotelReservationContext = _context.Review.Include(r => r.Hotel);
+            return View(await craciun_Adriana_HotelReservationContext.ToListAsync());
+        }
+
+        // GET: Reviews/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var review = await _context.Review
+                .Include(r => r.Hotel)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (review == null)
+            {
+                return NotFound();
+            }
+
+            return View(review);
+        }
+
+        // GET: Reviews/Create
+        public IActionResult Create()
+        {
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id");
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id");
+            return View();
+        }
+
+        // POST: Reviews/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,ClientId,HotelId,Rating,Comment")] Review review)
+        {
+            if (ModelState.IsValid)
+            {
+                review.CreatedAt = DateTime.Now;
+                _context.Add(review);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id", review.HotelId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", review.ClientId);
+            return View(review);
+        }
+
+        // GET: Reviews/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var review = await _context.Review.FindAsync(id);
+            if (review == null)
+            {
+                return NotFound();
+            }
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id", review.HotelId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", review.ClientId);
+            return View(review);
+        }
+
+        // POST: Reviews/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientId,HotelId,Rating,Comment")] Review review)
+        {
+            if (id != review.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(review);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ReviewExists(review.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id", review.HotelId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", review.ClientId);
+            return View(review);
+        }
+
+        // GET: Reviews/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var review = await _context.Review
+                .Include(r => r.Hotel)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (review == null)
+            {
+                return NotFound();
+            }
+
+            return View(review);
+        }
+
+        // POST: Reviews/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var review = await _context.Review.FindAsync(id);
+            if (review != null)
+            {
+                _context.Review.Remove(review);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool ReviewExists(int id)
+        {
+            return _context.Review.Any(e => e.Id == id);
+        }
+    }
+}
