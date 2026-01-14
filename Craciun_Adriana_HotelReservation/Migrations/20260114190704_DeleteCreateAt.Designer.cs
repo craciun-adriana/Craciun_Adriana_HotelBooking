@@ -4,6 +4,7 @@ using Craciun_Adriana_HotelReservation.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Craciun_Adriana_HotelReservation.Migrations
 {
     [DbContext(typeof(Craciun_Adriana_HotelReservationContext))]
-    partial class Craciun_Adriana_HotelReservationContextModelSnapshot : ModelSnapshot
+    [Migration("20260114190704_DeleteCreateAt")]
+    partial class DeleteCreateAt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

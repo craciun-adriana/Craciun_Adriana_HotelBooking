@@ -62,7 +62,6 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         {
             if (ModelState.IsValid)
             {
-                reservation.CreatedAt = DateTime.Now;
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,7 +96,7 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientId,RoomId,CheckInDate,CheckOutDate,TotalPrice,Status,SpecialRequests,MarketSegment")] Reservation reservation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientId,RoomId,CheckInDate,CheckOutDate,CreatedAt,TotalPrice,Status,SpecialRequests,MarketSegment")] Reservation reservation)
         {
             if (id != reservation.Id)
             {

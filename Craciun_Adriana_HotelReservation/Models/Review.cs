@@ -6,9 +6,8 @@
         public int ClientId { get; set; }
         public int HotelId { get; set; }
 
-        public int Rating { get; set; } // 1–5
+        public int Rating { get; set; }
         public string Comment { get; set; }
-        public DateTime CreatedAt { get; set; }
         public Client? Client { get; set; }
         public Hotel? Hotel { get; set; }
     }

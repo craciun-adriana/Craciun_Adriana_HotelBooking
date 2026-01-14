@@ -8,7 +8,6 @@ namespace Craciun_Adriana_HotelReservation.Models
         public string FullName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime CreatedAt { get; set; }
         public ICollection<Reservation>? Reservations { get; set; }
         public ICollection<Review>? Reviews { get; set; }
     }

@@ -58,7 +58,6 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         {
             if (ModelState.IsValid)
             {
-                client.CreatedAt = DateTime.Now;
                 _context.Add(client);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

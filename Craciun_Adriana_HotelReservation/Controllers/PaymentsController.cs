@@ -61,7 +61,6 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         {
             if (ModelState.IsValid)
             {
-                payment.PaymentDate = DateTime.Now;
                 _context.Add(payment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
