@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Craciun_Adriana_HotelReservation.Data;
+using Craciun_Adriana_HotelReservation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Craciun_Adriana_HotelReservation.Data;
-using Craciun_Adriana_HotelReservation.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Craciun_Adriana_HotelReservation.Controllers
 {
@@ -20,9 +21,17 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         }
 
         // GET: Hotels
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index( string? sortOrder)
         {
-            return View(await _context.Hotel.ToListAsync());
+            var query = _context.Hotel.AsQueryable();
+            query = sortOrder
+                switch
+            {
+                "review_asc" => query.OrderBy(p => p.Stars),
+                "review_desc" => query.OrderByDescending(p => p.Stars),
+                _ => query.OrderBy(p => p.Stars)
+            }; 
+            return View(await query.ToListAsync());
         }
 
         // GET: Hotels/Details/5

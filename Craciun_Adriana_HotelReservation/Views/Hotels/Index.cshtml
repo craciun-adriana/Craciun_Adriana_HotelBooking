@@ -27,7 +27,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th></th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="review_asc">↑</a> 
+                <a asp-action="Index" asp-route-sortOrder="review_desc">↓</a>
+
+            </th>
         </tr>
     </thead>
     <tbody>
