@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Customer loyalty gRPC";
+}
+
+<h2>Customer loyalty (gRPC + ML.NET)</h2>
+
+<form asp-action="Prediction" method="post">
+    <div class="form-group">
+        <label for="no_bookings_not_canceled">Number of bookings not cancelled</label>
+        <input type="number" step="1" class="form-control" id="no_bookings_not_canceled" name="no_bookings_not_canceled" required />
+    </div>
+    <div class="form-group">
+        <label for="average_room_price">Average room price</label>
+        <input type="number" step="1" class="form-control" id="average_room_price" name="average_room_price" required />
+    </div>
+    <div class="form-group">
+        <label for="no_special_requests">Number of special requests</label>
+        <input type="number" step="1" class="form-control" id="no_special_requests" name="no_special_requests" required />
+    </div>
+    <div class="form-group">
+        <label for="market_segment_type">Market segment type</label>
+        <select class="form-control" id="market_segment_type" name="market_segment_type" required asp-items="Html.GetEnumSelectList<MarketSegmentType>()"></select>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Verifica loialitatea</button>
+</form>
+
+@if (ViewBag.IsLoyal != null)
+{
+    <hr />
+    <h4>Rezultat:</h4>
+
+    @if (ViewBag.IsLoyal == true)
+    {
+        <p style="color:green"><strong>Clientul este loial.</strong></p>
+    }
+    else
+    {
+        <p style="color:red"><strong>Clientul nu este loial.</strong></p>
+    }
+}
+

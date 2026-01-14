@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcCustomerLoyalty";
+
+package customer;
+
+// The greeting service definition.
+service CustomerLoyalty {
+  // Sends a greeting
+  rpc PredictLoyalty (LoyaltyRequest) returns (LoyaltyReply);
+}
+
+// The request message containing the user's name.
+message LoyaltyRequest {
+  int32 no_bookings_not_canceled = 1;
+  float average_room_price = 2;
+  int32 no_special_requests = 3;
+  string market_segment_type = 4;
+}
+
+// The response message containing the greetings.
+message LoyaltyReply {
+	bool is_loyal_customer = 1;
+}
