@@ -22,7 +22,9 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         // GET: Reviews
         public async Task<IActionResult> Index()
         {
-            var craciun_Adriana_HotelReservationContext = _context.Review.Include(r => r.Hotel).Include(r=>r.Client);
+            var craciun_Adriana_HotelReservationContext = _context.Review
+                .Include(r => r.Hotel)
+                .Include(r => r.Client);
             return View(await craciun_Adriana_HotelReservationContext.ToListAsync());
         }
 
@@ -36,6 +38,7 @@ namespace Craciun_Adriana_HotelReservation.Controllers
 
             var review = await _context.Review
                 .Include(r => r.Hotel)
+                .Include(r => r.Client)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (review == null)
             {
@@ -48,8 +51,8 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         // GET: Reviews/Create
         public IActionResult Create()
         {
-            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id");
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id");
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Name");
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName");
             return View();
         }
 
@@ -66,8 +69,8 @@ namespace Craciun_Adriana_HotelReservation.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id", review.HotelId);
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", review.ClientId);
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Name", review.HotelId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName", review.ClientId);
             return View(review);
         }
 
@@ -84,8 +87,8 @@ namespace Craciun_Adriana_HotelReservation.Controllers
             {
                 return NotFound();
             }
-            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id", review.HotelId);
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", review.ClientId);
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Name", review.HotelId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName", review.ClientId);
             return View(review);
         }
 
@@ -121,8 +124,8 @@ namespace Craciun_Adriana_HotelReservation.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id", review.HotelId);
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", review.ClientId);
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Name", review.HotelId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName", review.ClientId);
             return View(review);
         }
 
@@ -136,6 +139,7 @@ namespace Craciun_Adriana_HotelReservation.Controllers
 
             var review = await _context.Review
                 .Include(r => r.Hotel)
+                .Include(r => r.Client)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (review == null)
             {
