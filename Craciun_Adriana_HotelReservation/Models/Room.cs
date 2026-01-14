@@ -10,5 +10,7 @@
         public decimal BasePricePerNight { get; set; }
         public Hotel? Hotel { get; set; }
         public ICollection<Reservation>? Reservations { get; set; }
+
+        public string RoomInfo => $"{Hotel?.Name} - {RoomNumber}";
     }
 }

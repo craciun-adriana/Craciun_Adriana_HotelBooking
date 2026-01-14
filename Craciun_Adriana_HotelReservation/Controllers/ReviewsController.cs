@@ -22,7 +22,7 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         // GET: Reviews
         public async Task<IActionResult> Index()
         {
-            var craciun_Adriana_HotelReservationContext = _context.Review.Include(r => r.Hotel);
+            var craciun_Adriana_HotelReservationContext = _context.Review.Include(r => r.Hotel).Include(r=>r.Client);
             return View(await craciun_Adriana_HotelReservationContext.ToListAsync());
         }
 
