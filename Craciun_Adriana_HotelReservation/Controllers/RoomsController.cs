@@ -48,7 +48,7 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         // GET: Rooms/Create
         public IActionResult Create()
         {
-            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id");
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace Craciun_Adriana_HotelReservation.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id", room.HotelId);
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Name", room.HotelId);
             return View(room);
         }
 
@@ -82,7 +82,7 @@ namespace Craciun_Adriana_HotelReservation.Controllers
             {
                 return NotFound();
             }
-            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id", room.HotelId);
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Name", room.HotelId);
             return View(room);
         }
 
@@ -118,7 +118,7 @@ namespace Craciun_Adriana_HotelReservation.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Id", room.HotelId);
+            ViewData["HotelId"] = new SelectList(_context.Hotel, "Id", "Name", room.HotelId);
             return View(room);
         }
 
