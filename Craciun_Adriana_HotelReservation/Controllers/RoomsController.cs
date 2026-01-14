@@ -20,9 +20,23 @@ namespace Craciun_Adriana_HotelReservation.Controllers
         }
 
         // GET: Rooms
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index( float? minPrice, float? maxPrice)
         {
-            var craciun_Adriana_HotelReservationContext = _context.Room.Include(r => r.Hotel);
+            var query = _context.Room.AsQueryable();
+
+            if (minPrice.HasValue) 
+            { 
+                query = query.Where(p => p.BasePricePerNight >= minPrice.Value);
+                ViewData["CurrentMinPrice"] = minPrice.Value;
+            }
+
+            if (maxPrice.HasValue) 
+            { 
+                query = query.Where(p => p.BasePricePerNight <= maxPrice.Value); 
+                ViewData["CurrentMaxPrice"] = maxPrice.Value;
+            }
+
+            var craciun_Adriana_HotelReservationContext = query.Include(r => r.Hotel);
             return View(await craciun_Adriana_HotelReservationContext.ToListAsync());
         }
 
