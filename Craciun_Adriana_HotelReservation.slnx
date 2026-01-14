@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Craciun_Adriana_HotelReservation/Craciun_Adriana_HotelReservation.csproj" />
+  <Project Path="GrpcCustomerLoyalty/GrpcCustomerLoyalty.csproj" Id="540ed862-c1c4-466c-9f05-884fdd0a69c0" />
 </Solution>

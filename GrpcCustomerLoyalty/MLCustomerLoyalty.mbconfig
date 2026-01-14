@@ -1,0 +1,504 @@
+﻿{
+  "Scenario": "Classification",
+  "DataSource": {
+    "Version": 3,
+    "EscapeCharacter": "\"",
+    "ReadMultiLines": false,
+    "KeepDiacritics": false,
+    "KeepPunctuations": false,
+    "AllowQuoting": false,
+    "Type": "TabularFile",
+    "FilePath": "C:\\Users\\adric\\Downloads\\Hotel Reservations.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "Booking_ID",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "no_of_adults",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "no_of_children",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "no_of_weekend_nights",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "no_of_week_nights",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "type_of_meal_plan",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "required_car_parking_space",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "room_type_reserved",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "lead_time",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "arrival_year",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "arrival_month",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "arrival_date",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "market_segment_type",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "repeated_guest",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "no_of_previous_cancellations",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "no_of_previous_bookings_not_canceled",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "avg_price_per_room",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "no_of_special_requests",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "booking_status",
+        "ColumnPurpose": "Ignore",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 3,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeOva",
+        "Score": 0.94054054054054048,
+        "RuntimeInSeconds": 1.15,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e11",
+          "e0": {
+            "OutputColumnNames": [
+              "market_segment_type"
+            ],
+            "InputColumnNames": [
+              "market_segment_type"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ],
+            "InputColumnNames": [
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ]
+          },
+          "e11": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnNames": [
+              "market_segment_type",
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "OutputColumnName": "repeated_guest",
+            "InputColumnName": "repeated_guest",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e4": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 254,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "repeated_guest",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LightGbmMulti",
+        "Score": 0.94054054054054048,
+        "RuntimeInSeconds": 0.637,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e6 * e11",
+          "e0": {
+            "OutputColumnNames": [
+              "market_segment_type"
+            ],
+            "InputColumnNames": [
+              "market_segment_type"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ],
+            "InputColumnNames": [
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ]
+          },
+          "e11": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnNames": [
+              "market_segment_type",
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "OutputColumnName": "repeated_guest",
+            "InputColumnName": "repeated_guest",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e6": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 254,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "repeated_guest",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeOva",
+        "Score": 0.94054054054054048,
+        "RuntimeInSeconds": 0.587,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e11",
+          "e0": {
+            "OutputColumnNames": [
+              "market_segment_type"
+            ],
+            "InputColumnNames": [
+              "market_segment_type"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ],
+            "InputColumnNames": [
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ]
+          },
+          "e11": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnNames": [
+              "market_segment_type",
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "OutputColumnName": "repeated_guest",
+            "InputColumnName": "repeated_guest",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e4": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 19,
+            "NumberOfTrees": 6,
+            "MaximumBinCountPerFeature": 173,
+            "FeatureFraction": 0.99999999,
+            "LearningRate": 0.10199461076149847,
+            "LabelColumnName": "repeated_guest",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastForestOva",
+        "Score": 0.94054054054054048,
+        "RuntimeInSeconds": 0.753,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e5 * e11",
+          "e0": {
+            "OutputColumnNames": [
+              "market_segment_type"
+            ],
+            "InputColumnNames": [
+              "market_segment_type"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ],
+            "InputColumnNames": [
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ]
+          },
+          "e11": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnNames": [
+              "market_segment_type",
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "OutputColumnName": "repeated_guest",
+            "InputColumnName": "repeated_guest",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e5": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "repeated_guest",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeOva",
+        "Score": 0.94054054054054048,
+        "RuntimeInSeconds": 0.589,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e11",
+          "e0": {
+            "OutputColumnNames": [
+              "market_segment_type"
+            ],
+            "InputColumnNames": [
+              "market_segment_type"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ],
+            "InputColumnNames": [
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ]
+          },
+          "e11": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnNames": [
+              "market_segment_type",
+              "no_of_previous_bookings_not_canceled",
+              "avg_price_per_room",
+              "no_of_special_requests"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "OutputColumnName": "repeated_guest",
+            "InputColumnName": "repeated_guest",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e4": {
+            "NumberOfLeaves": 5,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 372,
+            "FeatureFraction": 0.99257703530922814,
+            "LearningRate": 0.098044395927778319,
+            "LabelColumnName": "repeated_guest",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          }
+        }
+      }
+    ],
+    "Estimators": {
+      "e0": "OneHotEncoding",
+      "e1": "ReplaceMissingValues",
+      "e2": "Concatenate",
+      "e3": "MapValueToKey",
+      "e4": "FastTreeOva",
+      "e5": "FastForestOva",
+      "e6": "LightGbmMulti",
+      "e7": "LbfgsLogisticRegressionOva",
+      "e8": "LbfgsMaximumEntropyMulti",
+      "e9": "SdcaMaximumEntropyMulti",
+      "e10": "SdcaLogisticRegressionOva",
+      "e11": "MapKeyToValue"
+    },
+    "Schema": "e0 * e1 * e2 * e3 * (e4 + e5 + e6 + e7 + e8 + e9 + e10) * e11",
+    "MetricName": "MacroAccuracy",
+    "ModelFilePath": "C:\\Users\\adric\\Desktop\\FSEGA\\Dezvoltarea de sisteme de Big Data\\Craciun_Adriana_HotelReservation\\GrpcCustomerLoyalty\\MLCustomerLoyalty.mlnet"
+  },
+  "Type": "TrainingConfig",
+  "Version": 5,
+  "TrainingOption": {
+    "Version": 2,
+    "Subsampling": false,
+    "Type": "ClassificationTrainingOption",
+    "TrainingTime": 900,
+    "LabelColumn": "repeated_guest",
+    "ValidationOption": {
+      "Version": 0,
+      "Type": "TrainValidateSplitValidationOption",
+      "SplitRatio": 0.2
+    }
+  }
+}
